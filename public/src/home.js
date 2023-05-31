@@ -29,6 +29,7 @@ function getMostCommonGenres(books) {
     }
     return acc;
   }, [])
+  
   function getTotalGenreCount(books, genre){
     let sum = 0
     for (let i = 0; i < books.length; i++){
@@ -75,18 +76,21 @@ function getMostPopularBooks(books) {
 
 }
 
+// Helper Function //
+function countBorrowsByAuthor(books, id){
+  let sum = 0
+  for (let i = 0; i < books.length; i++){
+    if (books[i].authorId === id){
+      sum = sum + books[i].borrows.length
+    }
+  }
+  return sum
+}
+
+
 function getMostPopularAuthors(books, authors) {
   // Map Array Method //
   const allAuthorIds = authors.map((author) => author.id)
-  function countBorrowsByAuthor(books, id){
-    let sum = 0
-    for (let i = 0; i < books.length; i++){
-      if (books[i].authorId === id){
-        sum = sum + books[i].borrows.length
-      }
-    }
-    return sum
-  }
   // Arrow Function //
   const getAuthorName = (authors, id) => {
     for (let i = 0; i < authors.length; i++){
